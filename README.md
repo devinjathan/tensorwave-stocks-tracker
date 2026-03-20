@@ -8,10 +8,14 @@ Real-time Data Fetching: Integrated with the Alpha Vantage API to fetch company 
 
 Responsive Architecture: Responsive design on mobile, tablet, and desktop using Tailwind's responsive modifiers (sm:, md:, lg:)
 
+Interactive Price Action Charts: Integrated Recharts to visualize past 100 days of historical price closures. Includes a custom-styled Line Graph, featuring responsive containers and interactive tooltips.
+
 🛠️ Tech Stack
 Framework: Next.js (App Router)
 
 Styling: Tailwind CSS
+
+Data Visualization: Recharts (Responsive Line Charts)
 
 Data Source: Alpha Vantage API
 
@@ -30,7 +34,7 @@ npm install
 
 3. Environment Variables
 
-Create a .env file in the root directory and add your API key:
+Create a .env.local file in the root directory and add your API key:
 
 Code snippet
 ```
