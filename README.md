@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📈 Stock Market Dashboard
+A responsive stocks React page built with Next.js and Tailwind CSS. This project was developed for a take home assessment for the TensorWave Internship.
 
-## Getting Started
+🚀 Features
+Dynamic Stock Grid: Interactive cards for 15 stock companies with their logos.
 
-First, run the development server:
+Real-time Data Fetching: Integrated with the Alpha Vantage API to fetch company overviews and daily data.
+
+Responsive Architecture: Responsive design on mobile, tablet, and desktop using Tailwind's responsive modifiers (sm:, md:, lg:)
+
+🛠️ Tech Stack
+Framework: Next.js (App Router)
+
+Styling: Tailwind CSS
+
+Data Source: Alpha Vantage API
+
+🏁 Getting Started
+1. Prerequisites
+
+An Alpha Vantage API Key (Get one here https://www.alphavantage.co/support/#api-key) 
+
+2. Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/devinjathan/tensorwave-stocks-tracker.git
+cd tensorwave-stocks-tracker
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a .env file in the root directory and add your API key:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Code snippet
+```
+ALPHAVANTAGE_KEY=your_api_key_here
+```
 
-## Learn More
+4. Run Development Server
 
-To learn more about Next.js, take a look at the following resources:
+```Bash
+npm run dev
+Open http://localhost:3000 to view the application.
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📝 Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Devin Custodio
