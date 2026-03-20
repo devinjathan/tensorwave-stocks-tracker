@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LineGraph from "@/components/stocksChart";
 
 
 interface getProps{
@@ -7,9 +8,12 @@ interface getProps{
 }
 
 export default async function stockInfo({ params }: getProps) {
+    //debug
+    //await new Promise(resolve => setTimeout(resolve, 2000));
     const {symbol} = await params;
     const apiKey = process.env.ALPHAVANTAGE_KEY;
-    
+
+
     // fetch the company overview and time_series_daily parallel
     const [overview, time_series_daily] = await Promise.all([
         fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`),
@@ -313,8 +317,11 @@ export default async function stockInfo({ params }: getProps) {
                 </div>
             </div>
 
+            { /* Line graph for the historical price chart */}
+            <div className="w-full h-100 border border-gray-300 rounded-xl p-5 bg-white shadow-sm">
+                <LineGraph data={rows}/>
+            </div>
             {/* Table for historical prices */}
-
             <div className="border-black flex justify-center overflow-x-auto">
                 <table className="border md:w-2/3 sm:w-full border-collapse border-b">
                     <thead>
@@ -324,18 +331,34 @@ export default async function stockInfo({ params }: getProps) {
                         <th className="text-left p-4">High</th>
                         <th className="text-left p-4">Low</th>
                         <th className="text-left p-4">Close</th>
+                        <th className="text-left p-4">Change</th>
                     </tr>
                     </thead>
                     <tbody>
-                        {rows.map((day) => (
+                        {rows.map((day, index) =>{
+                            const prevDate = rows[index+1];
+                            let percentageChange = 0;
+
+                            if(prevDate){
+                                percentageChange = ((day.close - prevDate.close) / prevDate.close) * 100;
+                            }
+                            return(
                             <tr key={day.date} className="even:bg-gray-100 w-full border-b">
                                 <td className="p-4">{day.date}</td>
                                 <td className="p-4">${day.open}</td>
                                 <td className="p-4 text-green-700">${day.high}</td>
                                 <td className="p-4 text-red-700">${day.low}</td>
                                 <td className="p-4">${day.close}</td>
+                                {/* Percentage change */}
+                                <td className={`p-4 font-semibold ${percentageChange >= 0 ? 'text-green-700' : 'text-red-700'}`}>
+                                    {percentageChange > 0 && '▲ '}
+                                    {percentageChange < 0 && '▼ '}
+                                    {percentageChange == 0 && '— '}
+                                    {percentageChange.toFixed(2)}%
+                                </td>
                             </tr>
-                        ))}
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>
